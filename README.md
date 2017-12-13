@@ -1,20 +1,3 @@
-# Phaser + ES6 + Webpack.
-#### A bootstrap project to create games with Phaser + ES6 + Webpack.
-
-![Phaser+ES6+Webpack](https://raw.githubusercontent.com/lean/phaser-es6-webpack/master/assets/images/phaser-es6-webpack.jpg)
-
-[![js-standard-style](https://cdn.rawgit.com/feross/standard/master/badge.svg)](https://github.com/feross/standard)
-
-
-## Features
-- ESLINT with JavaScript Standard Style configuration
-- Next generation of Javascript
-- Browsers are automatically updated as you change project files
-- Webpack ready
-- WebFont Loader
-
-## Typescript 
-If you need typescript support checkout the ```typescript``` branch. Thanks to @MatsMaker
 
 # Setup
 You'll need to install a few things before you have a working copy of the project.
@@ -25,7 +8,7 @@ Navigate into your workspace directory.
 
 Run:
 
-```git clone https://github.com/lean/phaser-es6-webpack.git```
+```git clone https://github.com/hackertron/breakout.git```
 
 ## 2. Install node.js and npm:
 
@@ -38,7 +21,7 @@ Navigate to the cloned repo's directory.
 
 Run:
 
-```npm install``` 
+```npm install```
 
 or if you chose yarn, just run ```yarn```
 
@@ -67,7 +50,7 @@ Make sure to uncomment the cordova.js file in the src/index.html and to update c
 More informations about the cordova configuration:
 https://cordova.apache.org/docs/en/latest/config_ref/
 
-There is 3 platforms actually tested and supported : 
+There is 3 platforms actually tested and supported :
 - browser
 - ios
 - android
@@ -87,16 +70,3 @@ npm run cordova
 cordova platform update ios
 cordova run ios
 ```
-
-This will optimize and minimize the compiled bundle.
-
-## Credits
-Big thanks to these great repos:
-
-https://github.com/belohlavek/phaser-es6-boilerplate
-
-https://github.com/cstuncsik/phaser-es6-demo
-
-## Contributors
-
-https://github.com/RenaudROHLINGER
