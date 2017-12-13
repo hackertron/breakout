@@ -1,6 +1,7 @@
 import Phaser from 'phaser'
 import WebFont from 'webfontloader'
 import globals from './globals/index'
+import {clone} from 'lodash'
 
 export default class extends Phaser.State {
   init () {
@@ -14,7 +15,7 @@ export default class extends Phaser.State {
   }
 
   initGlobalVariables() {
-    this.game.global = globals
+    this.game.global = clone(globals)
   }
 
   preload () {
