@@ -8,11 +8,15 @@ export default class extends Phaser.State {
 
   create () {
     this.setUpText()
+    
 
   }
 
  setUpText() {
-   this.createText(20,20, 'left', `score : ${this.game.global.score}`)
+   this.createText(20,20, 'left', `Score : ${this.game.global.score}`);
+   this.createText(0,20, 'center', `Lives : ${this.game.global.lives}`);
+   this.createText(-20,20, 'right', `Level : ${this.game.global.level}`);
+
  }
 
  createText(x0ffset, y0ffset, align, text) {
