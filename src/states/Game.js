@@ -12,17 +12,18 @@ export default class extends Phaser.State {
   }
 
  setUpText() {
-
+   this.createText(20,20, 'left', `score : ${this.game.global.score}`)
  }
 
- createText() {
-   this.game.add.text(0,
-     20,
-     'hello',
+ createText(x0ffset, y0ffset, align, text) {
+   this.game.add.text(
+     x0ffset,
+     y0ffset,
+     text,
       {
         font : '18px Arial' ,
          fill : '#000',
-          boundsAlignH: 'center'
+          boundsAlignH: align
         }).setTextBounds(0,0, this.game.world.width, 0);
 
  }
