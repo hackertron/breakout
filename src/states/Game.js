@@ -13,6 +13,7 @@ export default class extends Phaser.State {
   preload () {}
 
   create () {
+    this.game.physics.arcade.checkCollision.down = false
     this.setUpText()
     this.setUpBricks()
     this.setUpPaddle()
@@ -34,7 +35,13 @@ export default class extends Phaser.State {
   setUpBall() {
     this.ball = new Ball(this.game)
     this.game.add.existing(this.ball)
+    this.ball.events.onOutOfBounds.add(this.ballLost,this)
     this.putBallOnPaddle()
+  }
+
+  ballLost() {
+    --this.game.gloabal.lives
+    this.livesText.text = `Lives : ${this.game.gloabal.lives}`
   }
 
   putBallOnPaddle() {
@@ -87,9 +94,9 @@ export default class extends Phaser.State {
   }
 
  setUpText() {
-   this.createText(20,20, 'left', `Score : ${this.game.global.score}`);
-   this.createText(0,20, 'center', `Lives : ${this.game.global.lives}`);
-   this.createText(-20,20, 'right', `Level : ${this.game.global.level}`);
+   this.scoreText = this.createText(20,20, 'left', `Score : ${this.game.global.score}`)
+   this.livesText = this.createText(0,20, 'center', `Lives : ${this.game.global.lives}`)
+   this.levelText = this.createText(-20,20, 'right', `Level : ${this.game.global.level}`)
 
  }
 
@@ -126,10 +133,25 @@ export default class extends Phaser.State {
      null,
      this
    )
+   //this.setUpText()
  }
 
- ballHitBrick() {
+ ballHitBrick(ball , brick) {
+   brick.kill()
 
+   this.game.global.score += 10
+   this.scoreText.text = `Score : ${this.game.global.score}`
+
+   if(this.bricks.countLiving() > 0) {
+     return
+   }
+   else {
+     this.game.global.level += 1
+     this.levelText.text = `Level : ${this.game.gloabal.level}`
+
+     this.putBallOnPaddle()
+     this.generateBricks(this.bricks)
+   }
  }
 
 ballHitPaddle(ball,paddle) {
@@ -139,6 +161,13 @@ ballHitPaddle(ball,paddle) {
   if(ball.x < paddle.x) {
     diff = paddle.x - ball.x
     ball.body.velocity.x = (-10 * diff)
+    return
+  }
+
+  if(ball.x > paddle.x) {
+    diff =   ball.x - paddle.x
+    ball.body.velocity.x = (10 * diff)
+    return
   }
 
 }
