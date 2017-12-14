@@ -41,7 +41,18 @@ export default class extends Phaser.State {
 
   ballLost() {
     --this.game.gloabal.lives
+
+    if(this.game.gloabal.lives === 0) {
+      //end the game
+      this.endGame()
+      return
+    }
     this.livesText.text = `Lives : ${this.game.gloabal.lives}`
+    this.putBallOnPaddle()
+  }
+
+  endGame() {
+    this.game.state.start('Gameover')
   }
 
   putBallOnPaddle() {
