@@ -1,3 +1,8 @@
+# Game
+
+![home](https://raw.githubusercontent.com/hackertron/breakout/master/game.PNG)
+
+
 
 # Setup
 You'll need to install a few things before you have a working copy of the project.
