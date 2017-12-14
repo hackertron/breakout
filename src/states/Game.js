@@ -40,7 +40,8 @@ export default class extends Phaser.State {
     let bricksGroupWidth = ((xoffset * columns) - (xoffset - brick.width)) / 2
 
     bricksGroup.position.setTo(
-      this.game.world.centerX - bricksGroupWidth
+      this.game.world.centerX - bricksGroupWidth,
+      this.game.world.centerY - 250
     )
   }
 
