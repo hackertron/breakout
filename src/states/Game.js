@@ -17,6 +17,18 @@ export default class extends Phaser.State {
     this.setUpBricks()
     this.setUpPaddle()
     this.setUpBall()
+
+    this.game.input.onDown.add(this.releaseBall, this)
+  }
+
+  releaseBall() {
+    this.ballOnPaddle = false
+    // prevents cheating :p
+    //if(!this.ballOnPaddle) {
+      //return
+    //}
+    this.ball.body.velocity.x = -20
+    this.ball.body.velocity.y = -300
   }
 
   setUpBall() {
@@ -95,8 +107,42 @@ export default class extends Phaser.State {
  }
 
  update() {
-   
+   if(this.ballOnPaddle) {
+     this.ball.body.x = this.paddle.x - (this.ball.width / 2)
+   }
+
+   this.game.physics.arcade.collide(
+     this.ball,
+     this.paddle,
+     this.ballHitPaddle,
+     null,
+     this
+   )
+
+   this.game.physics.arcade.collide(
+     this.ball,
+     this.bricks,
+     this.ballHitBrick,
+     null,
+     this
+   )
  }
+
+ ballHitBrick() {
+
+ }
+
+ballHitPaddle(ball,paddle) {
+
+  let diff = 0
+
+  if(ball.x < paddle.x) {
+    diff = paddle.x - ball.x
+    ball.body.velocity.x = (-10 * diff)
+  }
+
+}
+
   render () {
 
   }
