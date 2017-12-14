@@ -12,4 +12,4 @@ class Brick extends Phaser.Sprite {
   }
 }
 
-export default brick 
+export default Brick
